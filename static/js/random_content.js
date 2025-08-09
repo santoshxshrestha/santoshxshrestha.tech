@@ -1,5 +1,9 @@
 const contentPairs = [
   {
+    title: "cybardev — [NIX] — 22:38",
+    bio: "A jack of all trades and master of none, is often better than a master of one.",
+  },
+  {
     title: " echo $HOME > /dev/heart",
     bio: "I don't remember how I built it. But it still feels like home. Neovim,the terminal — these are the places where I’m not the smartest, but I’myself",
   },
