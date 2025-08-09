@@ -354,6 +354,107 @@ body {
     margin-top: 2.5rem;
 }
 
+
+.pointless.webring {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem 0 0 0;
+    padding: 0.8rem 1.2rem;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.pointless.webring li {
+    margin: 0;
+    padding: 0;
+}
+
+.pointless.webring a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.3rem 0.6rem;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.pointless.webring a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(187, 134, 252, 0.2),
+            transparent);
+    transition: left 0.4s ease;
+}
+
+.pointless.webring a:hover::before {
+    left: 100%;
+}
+
+.pointless.webring a:hover {
+    color: #e2e8f0;
+    background: rgba(187, 134, 252, 0.1);
+    transform: translateY(-1px);
+    text-shadow: 0 0 8px rgba(187, 134, 252, 0.3);
+}
+
+#lambda {
+    color: #bb86fc;
+    font-weight: 600;
+    font-family: "Fira Mono", "Consolas", monospace;
+    font-size: 1rem;
+    margin: 0 0.3rem;
+    text-shadow: 0 0 10px rgba(187, 134, 252, 0.4);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+}
+
+@media (max-width: 600px) {
+    .pointless.webring {
+        flex-wrap: wrap;
+        gap: 0.3rem;
+        padding: 0.6rem 0.8rem;
+        margin: 0.5rem 0 0 0;
+    }
+
+    .pointless.webring a {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    #lambda {
+        font-size: 0.9rem;
+        margin: 0 0.2rem;
+    }
+}
+
 @media (max-width: 600px) {
     .name {
         font-size: 2rem;
