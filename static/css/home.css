@@ -302,6 +302,9 @@ body {
     min-height: 3rem;
     transition: opacity 0.6s;
     opacity: 1;
+    flex: wrap;
+    word-break: break-all;
+    overflow-wrap: break-word;
 }
 
 .hidden {
