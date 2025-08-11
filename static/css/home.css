@@ -232,7 +232,6 @@ body {
 }
 
 .prompt-line {
-    display: flex;
     align-items: center;
     gap: 0.15rem;
     margin-bottom: 0.5rem;
