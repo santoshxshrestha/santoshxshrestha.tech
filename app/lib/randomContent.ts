@@ -1,11 +1,11 @@
-const contentPairs = [
+export const contentPairs = [
   {
     title: "cybardev — [NIX] — 22:38",
     bio: "A jack of all trades and master of none, is often better than a master of one.",
   },
   {
     title: " echo $HOME > /dev/heart",
-    bio: "I don't remember how I built it. But it still feels like home. Neovim,the terminal — these are the places where I’m not the smartest, but I’myself",
+    bio: "I don't remember how I built it. But it still feels like home. Neovim,the terminal — these are the places where I'm not the smartest, but I'myself",
   },
   {
     title: " cd ~/dotfiles",
@@ -37,7 +37,7 @@ const contentPairs = [
   },
   {
     title: " curl localhost:8080/peace",
-    bio: "No route matches ‘peace’ just yet. But I keep sending requests, hoping for a 200 OK one day.",
+    bio: "No route matches 'peace' just yet. But I keep sending requests, hoping for a 200 OK one day.",
   },
   {
     title: " while true; do learn; done",
@@ -61,7 +61,7 @@ const contentPairs = [
   },
   {
     title: " journalctl --boot",
-    bio: "The logs are messy, full of warnings and silent successes. But they’re mine — all of them.",
+    bio: "The logs are messy, full of warnings and silent successes. But they're mine — all of them.",
   },
   {
     title: " chmod +x ~/goals",
@@ -69,11 +69,11 @@ const contentPairs = [
   },
   {
     title: " zshrc of the soul",
-    bio: "Aliased reality, piped dreams. My shell reflects the person I’m trying to become.",
+    bio: "Aliased reality, piped dreams. My shell reflects the person I'm trying to become.",
   },
   {
     title: " sleep 8h",
-    bio: "One day, maybe. But for now, I’ll just sip code under moonlight and let the compiler hum me to rest.",
+    bio: "One day, maybe. But for now, I'll just sip code under moonlight and let the compiler hum me to rest.",
   },
   {
     title: " git diff yesterday today",
@@ -81,11 +81,11 @@ const contentPairs = [
   },
   {
     title: " mount /dev/mind /mnt/focus",
-    bio: "I try to stay grounded in systems I barely understand. But that’s the point — to understand them.",
+    bio: "I try to stay grounded in systems I barely understand. But that's the point — to understand them.",
   },
   {
     title: " sudo chown -R santosh ~/destiny",
-    bio: "Taking ownership of every path I walk. No more running commands I don’t understand.",
+    bio: "Taking ownership of every path I walk. No more running commands I don't understand.",
   },
   {
     title: " ~/.config/hypr/hyprland.conf",
@@ -93,7 +93,7 @@ const contentPairs = [
   },
   {
     title: " read -p 'continue? (y/n)'",
-    bio: "Always yes. Even when I don’t feel ready. Especially then.",
+    bio: "Always yes. Even when I don't feel ready. Especially then.",
   },
   {
     title: " dmesg | tail -n 20",
@@ -109,11 +109,11 @@ const contentPairs = [
   },
   {
     title: " top",
-    bio: "My CPU spikes with ambition, and memory leaks through nostalgia. Still, the system’s alive.",
+    bio: "My CPU spikes with ambition, and memory leaks through nostalgia. Still, the system's alive.",
   },
   {
     title: " g++ -o me main.cpp",
-    bio: "Compiled from experience, linked with mistakes. The binary isn’t perfect, but it runs.",
+    bio: "Compiled from experience, linked with mistakes. The binary isn't perfect, but it runs.",
   },
   {
     title: " lsblk",
@@ -121,7 +121,7 @@ const contentPairs = [
   },
   {
     title: " df -h",
-    bio: "Sometimes I run low on space — mentally, emotionally. That’s when I clean up and begin again.",
+    bio: "Sometimes I run low on space — mentally, emotionally. That's when I clean up and begin again.",
   },
   {
     title: " nvim ~/.ideas",
@@ -145,7 +145,7 @@ const contentPairs = [
   },
   {
     title: " less ~/mistakes.log",
-    bio: "I read them often. They don’t scare me anymore — they teach me.",
+    bio: "I read them often. They don't scare me anymore — they teach me.",
   },
   {
     title: " tail -f ~/thoughts.log",
@@ -161,7 +161,7 @@ const contentPairs = [
   },
   {
     title: " git remote add origin self",
-    bio: "My origin isn’t GitHub. It’s me — messy, local, versioned by memory.",
+    bio: "My origin isn't GitHub. It's me — messy, local, versioned by memory.",
   },
   {
     title: " hyprctl reload",
@@ -201,11 +201,11 @@ const contentPairs = [
   },
   {
     title: " ~/.secrets/env",
-    bio: "You don’t need to source everything. Some variables are better left untouched.",
+    bio: "You don't need to source everything. Some variables are better left untouched.",
   },
   {
     title: " cargo check",
-    bio: "I don’t always build, but I always check. Errors early, peace later.",
+    bio: "I don't always build, but I always check. Errors early, peace later.",
   },
   {
     title: " whoami",
@@ -237,7 +237,7 @@ const contentPairs = [
   },
   {
     title: " :wq",
-    bio: "Sometimes you don’t need to fix it all. Just write. Just quit. And come back better.",
+    bio: "Sometimes you don't need to fix it all. Just write. Just quit. And come back better.",
   },
   {
     title: " cat ~/.bash_history",
@@ -249,7 +249,7 @@ const contentPairs = [
   },
   {
     title: " man life",
-    bio: "Still searching for the right flags. The manual is sparse, but I’m learning the usage patterns.",
+    bio: "Still searching for the right flags. The manual is sparse, but I'm learning the usage patterns.",
   },
   {
     title: " journalctl --since=yesterday",
@@ -265,11 +265,11 @@ const contentPairs = [
   },
   {
     title: " ssh santosh@localhost",
-    bio: "I’m learning to connect with myself. No password needed — just honesty.",
+    bio: "I'm learning to connect with myself. No password needed — just honesty.",
   },
   {
     title: " grep -i hope /dev/diary",
-    bio: "Some days it’s lowercase, others uppercase. But it’s always there if I look close.",
+    bio: "Some days it's lowercase, others uppercase. But it's always there if I look close.",
   },
   {
     title: " diff self_old self_now",
@@ -277,7 +277,7 @@ const contentPairs = [
   },
   {
     title: " tar -czf ~/memories.tar.gz ~/nostalgia",
-    bio: "Compressed, but never forgotten. Sometimes I unpack them just to remember how far I’ve come.",
+    bio: "Compressed, but never forgotten. Sometimes I unpack them just to remember how far I've come.",
   },
   {
     title: " alias santosh='always learning'",
@@ -285,7 +285,7 @@ const contentPairs = [
   },
   {
     title: " watch -n1 'life --progress'",
-    bio: "Nothing flashy. Just quiet updates every second — and that’s enough.",
+    bio: "Nothing flashy. Just quiet updates every second — and that's enough.",
   },
   {
     title: " echo $BRAIN > /dev/zen",
@@ -301,7 +301,7 @@ const contentPairs = [
   },
   {
     title: " rust-analyzer --love",
-    bio: "It doesn’t exist as a flag — but maybe it should. Empathy makes every program better.",
+    bio: "It doesn't exist as a flag — but maybe it should. Empathy makes every program better.",
   },
   {
     title: " nvim +silent! +normal! gg",
@@ -373,7 +373,7 @@ const contentPairs = [
   },
   {
     title: " tmux new -s dreamspace",
-    bio: "In this session, everything’s possible.",
+    bio: "In this session, everything's possible.",
   },
   {
     title: " fd purpose ~",
@@ -393,7 +393,7 @@ const contentPairs = [
   },
   {
     title: " git diff --staged humanity",
-    bio: "Changes we haven’t committed yet — but I see the patches.",
+    bio: "Changes we haven't committed yet — but I see the patches.",
   },
   {
     title: " cd ~/questions",
@@ -421,7 +421,7 @@ const contentPairs = [
   },
   {
     title: " curl -sL universe.sh | bash",
-    bio: "Running the universe’s install script — one silent hope at a time.",
+    bio: "Running the universe's install script — one silent hope at a time.",
   },
   {
     title: " :!make love",
@@ -441,19 +441,6 @@ const contentPairs = [
   },
 ];
 
-function getRandomContentPair() {
+export function getRandomContentPair() {
   return contentPairs[Math.floor(Math.random() * contentPairs.length)];
 }
-
-let title = "";
-function updateContent() {
-  // const titleElement = document.querySelector(".title");
-  const bioElement = document.querySelector(".bio");
-
-  const randomPair = getRandomContentPair();
-  // titleElement.textContent = randomPair.title;
-  title = randomPair.title;
-  bioElement.textContent = randomPair.bio;
-}
-
-document.addEventListener("DOMContentLoaded", updateContent);
