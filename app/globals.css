@@ -472,8 +472,8 @@ body {
 
 #nix-wrapper:hover {
   animation: nixSpinGlow 1s linear infinite;
-  filter: drop-shadow(0 0 20px rgba(187, 134, 252, 1)) 
-          drop-shadow(0 0 30px rgba(78, 205, 196, 0.8));
+  filter: drop-shadow(0 0 20px rgba(187, 134, 252, 1))
+    drop-shadow(0 0 30px rgba(78, 205, 196, 0.8));
 }
 
 #nix {
@@ -483,7 +483,8 @@ body {
 }
 
 @keyframes nixPulseRotate {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
     transform: scale(1) rotate(0deg);
     filter: drop-shadow(0 0 8px rgba(187, 134, 252, 0.6));
@@ -492,19 +493,19 @@ body {
     opacity: 0.85;
     transform: scale(1.15) rotate(90deg);
     filter: drop-shadow(0 0 15px rgba(187, 134, 252, 0.8))
-            drop-shadow(0 0 25px rgba(78, 205, 196, 0.4));
+      drop-shadow(0 0 25px rgba(78, 205, 196, 0.4));
   }
   50% {
     opacity: 1;
     transform: scale(1.3) rotate(180deg);
     filter: drop-shadow(0 0 20px rgba(78, 205, 196, 0.9))
-            drop-shadow(0 0 30px rgba(187, 134, 252, 0.6));
+      drop-shadow(0 0 30px rgba(187, 134, 252, 0.6));
   }
   75% {
     opacity: 0.85;
     transform: scale(1.15) rotate(270deg);
     filter: drop-shadow(0 0 15px rgba(187, 134, 252, 0.8))
-            drop-shadow(0 0 25px rgba(78, 205, 196, 0.4));
+      drop-shadow(0 0 25px rgba(78, 205, 196, 0.4));
   }
 }
 
