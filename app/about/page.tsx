@@ -95,6 +95,7 @@ export default function About() {
           <span className="host">nixos</span>
           <span className="path">~]</span>
           <span className="dollar">$</span>
+          <span> </span>
           <span className="command" id="command-text">
             {commandText}
           </span>
@@ -123,7 +124,8 @@ export default function About() {
           <span className="at">@</span>
           <span className="host">nixos</span>
           <span className="path">~]</span>
-          <span className="dollar"> $</span>
+          <span className="dollar">$</span>
+          <span> </span>
           <span className="cursor"></span>
         </div>
       </div>

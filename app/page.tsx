@@ -75,6 +75,7 @@ export default function Home() {
             <span className="host">nixos</span>
             <span className="path">~]</span>
             <span className="dollar">$</span>
+            <span> </span>
             <span className="command" id="command-text">
               {commandText}
             </span>

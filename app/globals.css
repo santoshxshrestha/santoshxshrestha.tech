@@ -230,18 +230,22 @@ body {
 }
 
 .prompt-line {
-  display: flex;
-  align-items: center;
-  gap: 0.15rem;
+  display: block;
   margin-bottom: 0.5rem;
 }
 
-.user,
-.at,
-.host,
-.path,
-.dollar {
+.prompt-line .user,
+.prompt-line .at,
+.prompt-line .host,
+.prompt-line .path,
+.prompt-line .dollar,
+.prompt-line .command {
   font-weight: 600;
+  display: inline;
+}
+
+.prompt-line .command {
+  font-weight: 500;
 }
 
 .user {
@@ -268,8 +272,7 @@ body {
   color: #e2e8f0;
   font-weight: 500;
   letter-spacing: 0.03em;
-  flex-wrap: wrap;
-  word-break: break-all;
+  word-break: break-word;
   overflow-wrap: break-word;
 }
 
@@ -277,9 +280,12 @@ body {
   width: 0.6ch;
   background: #e2e8f0;
   animation: blink 1s steps(2, start) infinite;
-  display: inline-block;
+  display: inline-block !important;
   height: 1em;
-  vertical-align: middle;
+  vertical-align: baseline;
+  margin-left: 1px;
+  position: relative;
+  top: 2px;
 }
 
 @keyframes blink {
