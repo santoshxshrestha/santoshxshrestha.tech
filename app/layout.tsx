@@ -17,11 +17,6 @@ export const metadata: Metadata = {
   title: "Santosh - Home",
   description: "Santosh Shrestha's personal website. Explore projects, blog posts, and more about Santosh.",
   keywords: "Santosh Shrestha, santoshxshrestha, personal website, projects, blog, NixOS, developer, portfolio",
-  openGraph: {
-    title: "Santosh Shrestha - Home",
-    description: "Santosh Shrestha's personal website. Explore projects, blog posts, and more about Santosh.",
-    images: ["/santosh.jpg"],
-  },
 };
 
 export default function RootLayout({
