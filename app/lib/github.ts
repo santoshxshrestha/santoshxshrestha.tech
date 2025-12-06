@@ -16,16 +16,18 @@ export interface GitHubRepo {
   fork: boolean;
 }
 
-export async function fetchGitHubRepos(username: string): Promise<GitHubRepo[]> {
+export async function fetchGitHubRepos(
+  username: string,
+): Promise<GitHubRepo[]> {
   try {
     const response = await fetch(
       `https://api.github.com/users/${username}/repos?sort=updated&per_page=100`,
       {
         headers: {
-          'Accept': 'application/vnd.github.v3+json',
+          Accept: "application/vnd.github.v3+json",
         },
         next: { revalidate: 3600 }, // Revalidate every hour
-      }
+      },
     );
 
     if (!response.ok) {
@@ -33,20 +35,22 @@ export async function fetchGitHubRepos(username: string): Promise<GitHubRepo[]> 
     }
 
     const repos: GitHubRepo[] = await response.json();
-    
+
     // Filter out forks and archived repos, sort by stars and update date
     return repos
-      .filter(repo => !repo.fork && !repo.archived)
+      .filter((repo) => !repo.fork && !repo.archived)
       .sort((a, b) => {
         // Prioritize repos with more stars
         const starDiff = b.stargazers_count - a.stargazers_count;
         if (starDiff !== 0) return starDiff;
-        
+
         // Then sort by most recently updated
-        return new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime();
+        return (
+          new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+        );
       });
   } catch (error) {
-    console.error('Error fetching GitHub repos:', error);
+    console.error("Error fetching GitHub repos:", error);
     return [];
   }
 }
@@ -61,9 +65,9 @@ export function formatDate(dateString: string): string {
     return `${diffDays} days ago`;
   } else if (diffDays < 365) {
     const months = Math.floor(diffDays / 30);
-    return `${months} month${months > 1 ? 's' : ''} ago`;
+    return `${months} month${months > 1 ? "s" : ""} ago`;
   } else {
     const years = Math.floor(diffDays / 365);
-    return `${years} year${years > 1 ? 's' : ''} ago`;
+    return `${years} year${years > 1 ? "s" : ""} ago`;
   }
 }

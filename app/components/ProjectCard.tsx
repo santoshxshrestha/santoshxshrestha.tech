@@ -1,32 +1,34 @@
-import { GitHubRepo, formatDate } from '../lib/github';
+import { GitHubRepo, formatDate } from "../lib/github";
 
 interface ProjectCardProps {
   repo: GitHubRepo;
 }
 
 const languageColors: { [key: string]: string } = {
-  JavaScript: '#f1e05a',
-  TypeScript: '#3178c6',
-  Python: '#3572A5',
-  Rust: '#dea584',
-  Go: '#00ADD8',
-  Java: '#b07219',
-  C: '#555555',
-  'C++': '#f34b7d',
-  Ruby: '#701516',
-  PHP: '#4F5D95',
-  Shell: '#89e051',
-  Swift: '#ffac45',
-  Kotlin: '#A97BFF',
-  Lua: '#000080',
-  HTML: '#e34c26',
-  CSS: '#563d7c',
-  Vue: '#41b883',
-  Nix: '#7e7eff',
+  JavaScript: "#f1e05a",
+  TypeScript: "#3178c6",
+  Python: "#3572A5",
+  Rust: "#dea584",
+  Go: "#00ADD8",
+  Java: "#b07219",
+  C: "#555555",
+  "C++": "#f34b7d",
+  Ruby: "#701516",
+  PHP: "#4F5D95",
+  Shell: "#89e051",
+  Swift: "#ffac45",
+  Kotlin: "#A97BFF",
+  Lua: "#000080",
+  HTML: "#e34c26",
+  CSS: "#563d7c",
+  Vue: "#41b883",
+  Nix: "#7e7eff",
 };
 
 export default function ProjectCard({ repo }: ProjectCardProps) {
-  const languageColor = repo.language ? languageColors[repo.language] || '#8b949e' : '#8b949e';
+  const languageColor = repo.language
+    ? languageColors[repo.language] || "#8b949e"
+    : "#8b949e";
 
   return (
     <div className="project-card">
@@ -50,7 +52,7 @@ export default function ProjectCard({ repo }: ProjectCardProps) {
       </div>
 
       <p className="project-description">
-        {repo.description || 'No description available'}
+        {repo.description || "No description available"}
       </p>
 
       {repo.topics && repo.topics.length > 0 && (

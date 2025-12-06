@@ -1,10 +1,10 @@
-import { Suspense } from 'react';
-import Link from 'next/link';
-import { fetchGitHubRepos } from '../lib/github';
-import ProjectCard from '../components/ProjectCard';
+import { Suspense } from "react";
+import Link from "next/link";
+import { fetchGitHubRepos } from "../lib/github";
+import ProjectCard from "../components/ProjectCard";
 
 async function ProjectsList() {
-  const repos = await fetchGitHubRepos('santoshxshrestha');
+  const repos = await fetchGitHubRepos("santoshxshrestha");
 
   if (repos.length === 0) {
     return (
@@ -22,7 +22,7 @@ async function ProjectsList() {
     </div>
   );
 }
-import { Metadata } from 'next';
+import { Metadata } from "next";
 
 function LoadingSkeleton() {
   return (
@@ -43,7 +43,7 @@ export default function Projects() {
   return (
     <div className="container projects-container">
       <div className="terminal-buttons">
-        <Link href="/" className="btn close" style={{ textDecoration: 'none' }}>
+        <Link href="/" className="btn close" style={{ textDecoration: "none" }}>
           <i className="fa-solid fa-xmark"></i>
         </Link>
       </div>
@@ -73,7 +73,8 @@ export default function Projects() {
   );
 }
 
-export const metadata:Metadata = {
-  title: 'Santosh - Projects',
-  description: 'A collection of Santosh Shrestha\'s open source projects and experiments',
+export const metadata: Metadata = {
+  title: "Santosh - Projects",
+  description:
+    "A collection of Santosh Shrestha's open source projects and experiments",
 };
