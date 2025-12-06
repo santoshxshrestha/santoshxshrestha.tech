@@ -22,6 +22,7 @@ async function ProjectsList() {
     </div>
   );
 }
+import { Metadata } from 'next';
 
 function LoadingSkeleton() {
   return (
@@ -72,7 +73,7 @@ export default function Projects() {
   );
 }
 
-export const metadata = {
+export const metadata:Metadata = {
   title: 'Santosh - Projects',
   description: 'A collection of Santosh Shrestha\'s open source projects and experiments',
 };
