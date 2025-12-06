@@ -911,6 +911,7 @@ body {
 .about-page {
   justify-content: flex-start;
   padding-top: 0;
+  padding-bottom: 2rem;
   animation: fadeInUp 1s ease-out;
 }
 
@@ -920,16 +921,18 @@ body {
   font-size: 3rem;
   font-weight: 300;
   margin-top: 1rem;
-  margin-bottom: -3rem;
+  margin-bottom: 1rem;
 }
 
 .about-page .header {
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
 
 .about-page .terminal-content {
-  min-height: auto;
+  min-height: calc(100vh - 200px);
+  max-height: calc(100vh - 150px);
   box-shadow: 0 2px 18px rgba(20, 20, 35, 0.6);
+  overflow-y: auto;
 }
 
 @media (max-width: 600px) {
@@ -942,11 +945,65 @@ body {
   }
 
   .about-page .header {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
   }
 
   .about-page .terminal-content {
     padding: 0.9rem 0.3rem;
     font-size: 0.8rem;
+    min-height: calc(100vh - 150px);
+    max-height: calc(100vh - 120px);
   }
+}
+
+/* Interactive Terminal Styles */
+.terminal-input-hidden {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.terminal-content {
+  max-height: 500px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.terminal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terminal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.terminal-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.terminal-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.output-line {
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+}
+
+.output-line pre {
+  color: #94a3b8;
+  font-family: var(--font-jetbrains-mono), "Fira Mono", "Consolas", monospace;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.term-container {
+  cursor: text;
 }

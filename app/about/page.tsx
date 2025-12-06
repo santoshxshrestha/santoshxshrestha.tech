@@ -1,14 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, KeyboardEvent } from "react";
 import Link from "next/link";
+
+interface HistoryEntry {
+  command: string;
+  output: string;
+}
 
 export default function About() {
   const [commandText, setCommandText] = useState("");
   const [showOutput, setShowOutput] = useState(false);
   const [showCursor, setShowCursor] = useState(true);
-  const [showFinalPrompt, setShowFinalPrompt] = useState(false);
   const [visibleLines, setVisibleLines] = useState<number[]>([]);
+  const [isInteractive, setIsInteractive] = useState(false);
+  const [currentInput, setCurrentInput] = useState("");
+  const [history, setHistory] = useState<HistoryEntry[]>([]);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const terminalRef = useRef<HTMLDivElement>(null);
 
   const infoData = [
     { label: "Name:", value: "Santosh Shrestha" },
@@ -62,9 +71,9 @@ export default function About() {
                     lineIndex++;
                   } else {
                     clearInterval(lineInterval);
-                    // Show final prompt
+                    // Enable interactive mode
                     setTimeout(() => {
-                      setShowFinalPrompt(true);
+                      setIsInteractive(true);
                     }, 500);
                   }
                 }, 100);
@@ -81,6 +90,132 @@ export default function About() {
     return () => clearTimeout(initialDelay);
   }, [infoData.length]);
 
+  const executeCommand = (cmd: string): string => {
+    const command = cmd.trim().toLowerCase();
+    
+    if (command === "") return "";
+    
+    if (command === "help") {
+      return `Available commands:
+  help     - Show this help message
+  mefetch  - Display about information
+  home     - Go back to home page
+  projects - View projects page
+  skills   - List my technical skills
+  contact  - Get my contact information
+  whoami   - Identify current user
+  date     - Show current date and time
+  echo     - Echo back your message (usage: echo <message>)
+  clear    - Clear terminal history
+  neofetch - Display system information
+  fortune  - Get a random fortune
+  ls       - List available pages`;
+    }
+    
+    if (command === "mefetch") {
+      return infoData.map(info => {
+        if (info.label === "" && info.value === "") return "";
+        if (info.label === "" && info.value !== "") return `  ${info.value}`;
+        return `${info.label} ${info.value}`;
+      }).join('\n');
+    }
+    
+    if (command === "home") {
+      return "Use the X button to navigate home, or visit /";
+    }
+    
+    if (command === "projects") {
+      return "Use the navigation to visit the projects page.";
+    }
+    
+    if (command === "skills") {
+      return `Technical Skills:
+  • Languages: JavaScript, Rust, C, C++, Bash, Lua, Python
+  • Frontend: HTML/CSS, Tailwind, Askama, Htmx
+  • Backend: Rust, Actix-web, PostgreSQL
+  • DevOps: CI/CD, Docker, AWS, Linux, Git, Nix
+  • Focus: Open Source, System Design, Web Development`;
+    }
+    
+    if (command === "contact") {
+      return `Contact Information:
+  • GitHub: https://github.com/santoshxshrestha
+  • Discord: santoshxshrestha
+  • Email: username [at] gmail.com
+  • Location: Butwal, Nepal`;
+    }
+    
+    if (command === "whoami") {
+      return "santosh";
+    }
+    
+    if (command === "date") {
+      return new Date().toString();
+    }
+    
+    if (command.startsWith("echo ")) {
+      return command.substring(5);
+    }
+    
+    if (command === "clear") {
+      setHistory([]);
+      return "";
+    }
+    
+    if (command === "ls") {
+      return `../  projects/  README.md`;
+    }
+    
+    if (command === "neofetch") {
+      return `
+       ___      santosh@nixos
+      /   \\     OS: NixOS (Yarara) x86_64
+     | o o |    Shell: nu
+     |  >  |    Terminal: Interactive Web Terminal
+      \\___/     Uptime: ${Math.floor(Math.random() * 100)} days
+                Editor: Neovim
+                Theme: Custom
+                Location: Butwal, Nepal`;
+    }
+    
+    if (command === "fortune") {
+      const fortunes = [
+        "The best way to predict the future is to invent it.",
+        "Code is like humor. When you have to explain it, it's bad.",
+        "First, solve the problem. Then, write the code.",
+        "Experience is the name everyone gives to their mistakes.",
+        "Simplicity is the soul of efficiency.",
+        "Make it work, make it right, make it fast.",
+        "In the land of the blind, the one-eyed man is king.",
+        "Talk is cheap. Show me the code. - Linus Torvalds",
+      ];
+      return fortunes[Math.floor(Math.random() * fortunes.length)];
+    }
+    
+    return `bash: command not found: ${cmd}\nType 'help' for available commands.`;
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      const output = executeCommand(currentInput);
+      setHistory([...history, { command: currentInput, output }]);
+      setCurrentInput("");
+      
+      // Scroll to bottom after rendering
+      setTimeout(() => {
+        if (terminalRef.current) {
+          terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+        }
+      }, 0);
+    }
+  };
+
+  const handleTerminalClick = () => {
+    if (isInteractive && inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
+
   return (
     <div className="container about-page">
       <div className="terminal-buttons">
@@ -91,7 +226,7 @@ export default function About() {
       <h1 className="name">About</h1>
       <div className="header"></div>
 
-      <div className="terminal-content">
+      <div className="terminal-content" ref={terminalRef} onClick={handleTerminalClick}>
         <div className="prompt-line">
           <span className="user">[santosh</span>
           <span className="at">@</span>
@@ -145,18 +280,46 @@ export default function About() {
           ))}
         </div>
 
-        <div
-          className={`prompt-line ${showFinalPrompt ? "" : "hidden"}`}
-          id="final-prompt"
-        >
-          <span className="user">[santosh</span>
-          <span className="at">@</span>
-          <span className="host">nixos</span>
-          <span className="path">~]</span>
-          <span className="dollar">$</span>
-          <span> </span>
-          <span className="cursor"></span>
-        </div>
+        {history.map((entry, index) => (
+          <div key={index}>
+            <div className="prompt-line">
+              <span className="user">[santosh</span>
+              <span className="at">@</span>
+              <span className="host">nixos</span>
+              <span className="path">~]</span>
+              <span className="dollar">$</span>
+              <span> {entry.command}</span>
+            </div>
+            {entry.output && (
+              <div className="output-line">
+                <pre>{entry.output}</pre>
+              </div>
+            )}
+          </div>
+        ))}
+
+        {isInteractive && (
+          <div className="prompt-line">
+            <span className="user">[santosh</span>
+            <span className="at">@</span>
+            <span className="host">nixos</span>
+            <span className="path">~]</span>
+            <span className="dollar">$</span>
+            <span> </span>
+            <span className="command">{currentInput}</span>
+            <span className="cursor"></span>
+            <input
+              ref={inputRef}
+              type="text"
+              value={currentInput}
+              onChange={(e) => setCurrentInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+              className="terminal-input-hidden"
+              autoFocus
+              spellCheck={false}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
