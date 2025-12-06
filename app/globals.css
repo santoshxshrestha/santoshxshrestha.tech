@@ -50,8 +50,7 @@
 }
 
 body {
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   line-height: 1.6;
   color: #e2e8f0;
   background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
@@ -108,10 +107,11 @@ body {
 }
 
 .name {
+  font-family: var(--font-dancing-script), cursive;
   font-size: 3rem;
-  font-weight: 390;
+  font-weight: 600;
   margin-bottom: 1rem;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.02em;
   background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #bb86fc, #03dac6);
   background-size: 200% 200%;
   background-clip: text;
@@ -224,7 +224,7 @@ body {
   border-radius: 16px;
   padding: 2.2rem 1.5rem;
   margin-top: 1rem;
-  font-family: "Fira Mono", "Consolas", monospace;
+  font-family: var(--font-jetbrains-mono), "Fira Mono", "Consolas", monospace;
   font-size: 1.1rem;
   position: relative;
 }
@@ -422,7 +422,7 @@ body {
 }
 
 .pointless.webring a {
-  color: #94a3b8;
+  color: #cbd5e1;
   text-decoration: none;
   font-size: 0.85rem;
   font-weight: 500;
@@ -668,8 +668,9 @@ body {
 }
 
 .project-title {
+  font-family: var(--font-inter), sans-serif;
   font-size: 1.25rem;
-  font-weight: 600;
+  font-weight: 500;
   margin: 0;
   flex: 1;
 }

@@ -64,7 +64,7 @@ export default function Home() {
             height={120}
           />
         </div>
-        <h1 className="name">Santosh Shrestha (@santoshxshrestha)</h1>
+        <h1 className="name">Santosh Shrestha <br/> (@santoshxshrestha)</h1>
       </div>
 
       <div className="term-container">
@@ -104,17 +104,16 @@ export default function Home() {
       <nav className="nav">
         <Link href="/projects">Projects</Link>
         <Link href="/about">About me</Link>
-      </nav>
-
-      <div className="quick-links">
         <a
           href="https://github.com/santoshxshrestha"
           target="_blank"
           rel="noopener noreferrer"
+          style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}
         >
-          <i className="fa-brands fa-github"></i>  GitHub
+          <Image src="/github.svg" alt="GitHub" width={20} height={20} />
+          GitHub
         </a>
-      </div>
+      </nav>
 
       <ul className="pointless webring">
         <li>
