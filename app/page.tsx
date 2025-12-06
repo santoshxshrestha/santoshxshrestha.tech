@@ -112,16 +112,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <i className="fa-brands fa-github"></i>
-          GitHub
-        </a>
-        <a
-          href="https://www.reddit.com/user/santoshxshrestha/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <i className="fa-brands fa-reddit-alien"></i>
-          reddit
+          <i className="fa-brands fa-github"></i>  GitHub
         </a>
       </div>
 

@@ -478,7 +478,7 @@ body {
 
 #nix {
   display: block;
-  width: 15px;
+  width: 30px;
   height: auto;
 }
 
@@ -534,6 +534,9 @@ body {
   #nix-wrapper {
     font-size: 0.9rem;
     margin: 0 0.2rem;
+  }
+  #nix {
+    width: 24px;
   }
 
   .name {
