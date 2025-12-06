@@ -16,6 +16,7 @@ export default function About() {
   const [isInteractive, setIsInteractive] = useState(false);
   const [currentInput, setCurrentInput] = useState("");
   const [history, setHistory] = useState<HistoryEntry[]>([]);
+  const [showInitialContent, setShowInitialContent] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
 
@@ -197,6 +198,16 @@ export default function About() {
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
+      const command = currentInput.trim().toLowerCase();
+      
+      // Handle clear command specially - clear all terminal content
+      if (command === "clear") {
+        setHistory([]);
+        setShowInitialContent(false);
+        setCurrentInput("");
+        return;
+      }
+      
       const output = executeCommand(currentInput);
       setHistory([...history, { command: currentInput, output }]);
       setCurrentInput("");
@@ -227,58 +238,62 @@ export default function About() {
       <div className="header"></div>
 
       <div className="terminal-content" ref={terminalRef} onClick={handleTerminalClick}>
-        <div className="prompt-line">
-          <span className="user">[santosh</span>
-          <span className="at">@</span>
-          <span className="host">nixos</span>
-          <span className="path">~]</span>
-          <span className="dollar">$</span>
-          <span> </span>
-          <span className="command" id="command-text">
-            {commandText}
-          </span>
-          {showCursor && <span className="cursor" id="cursor"></span>}
-        </div>
-
-        <div className={`output-hidden ${showOutput ? "" : "hidden"}`}>
-          {infoData.map((info, index) => (
-            <div
-              key={index}
-              className={`info-line ${visibleLines.includes(index) ? "" : "hidden"}`}
-              style={info.label === "" && info.value !== "" ? { 
-                textAlign: 'left', 
-                display: 'block',
-                whiteSpace: 'normal',
-                wordWrap: 'break-word',
-                overflowWrap: 'break-word',
-                textIndent: '2rem'
-              } : {}}
-            >
-              {info.label === "" && info.value !== "" ? (
-                <span className="value">{info.value}</span>
-              ) : (
-                <>
-                  <span className="label">{info.label}</span>{" "}
-                  {info.url ? (
-                    <a 
-                      href={info.url} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className={`value ${info.highlight ? "highlight" : ""}`}
-                      style={{ textDecoration: 'underline', cursor: 'pointer' }}
-                    >
-                      {info.value}
-                    </a>
-                  ) : (
-                    <span className={`value ${info.highlight ? "highlight" : ""}`}>
-                      {info.value}
-                    </span>
-                  )}
-                </>
-              )}
+        {showInitialContent && (
+          <>
+            <div className="prompt-line">
+              <span className="user">[santosh</span>
+              <span className="at">@</span>
+              <span className="host">nixos</span>
+              <span className="path">~]</span>
+              <span className="dollar">$</span>
+              <span> </span>
+              <span className="command" id="command-text">
+                {commandText}
+              </span>
+              {showCursor && <span className="cursor" id="cursor"></span>}
             </div>
-          ))}
-        </div>
+
+            <div className={`output-hidden ${showOutput ? "" : "hidden"}`}>
+              {infoData.map((info, index) => (
+                <div
+                  key={index}
+                  className={`info-line ${visibleLines.includes(index) ? "" : "hidden"}`}
+                  style={info.label === "" && info.value !== "" ? { 
+                    textAlign: 'left', 
+                    display: 'block',
+                    whiteSpace: 'normal',
+                    wordWrap: 'break-word',
+                    overflowWrap: 'break-word',
+                    textIndent: '2rem'
+                  } : {}}
+                >
+                  {info.label === "" && info.value !== "" ? (
+                    <span className="value">{info.value}</span>
+                  ) : (
+                    <>
+                      <span className="label">{info.label}</span>{" "}
+                      {info.url ? (
+                        <a 
+                          href={info.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className={`value ${info.highlight ? "highlight" : ""}`}
+                          style={{ textDecoration: 'underline', cursor: 'pointer' }}
+                        >
+                          {info.value}
+                        </a>
+                      ) : (
+                        <span className={`value ${info.highlight ? "highlight" : ""}`}>
+                          {info.value}
+                        </span>
+                      )}
+                    </>
+                  )}
+                </div>
+              ))}
+            </div>
+          </>
+        )}
 
         {history.map((entry, index) => (
           <div key={index}>

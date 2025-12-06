@@ -18,6 +18,7 @@ export default function Home() {
   const [isInteractive, setIsInteractive] = useState(false);
   const [currentInput, setCurrentInput] = useState("");
   const [history, setHistory] = useState<HistoryEntry[]>([]);
+  const [showInitialContent, setShowInitialContent] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
 
@@ -154,6 +155,16 @@ export default function Home() {
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
+      const command = currentInput.trim().toLowerCase();
+      
+      // Handle clear command specially - clear all terminal content
+      if (command === "clear") {
+        setHistory([]);
+        setShowInitialContent(false);
+        setCurrentInput("");
+        return;
+      }
+      
       const output = executeCommand(currentInput);
       setHistory([...history, { command: currentInput, output }]);
       setCurrentInput("");
@@ -189,24 +200,28 @@ export default function Home() {
 
       <div className="term-container" onClick={handleTerminalClick}>
         <div className="terminal-content" ref={terminalRef}>
-          <div className="prompt-line">
-            <span className="user">[santosh</span>
-            <span className="at">@</span>
-            <span className="host">nixos</span>
-            <span className="path">~]</span>
-            <span className="dollar">$</span>
-            <span> </span>
-            <span className="command" id="command-text">
-              {commandText}
-            </span>
-            {showCursor && <span className="cursor" id="cursor"></span>}
-          </div>
+          {showInitialContent && (
+            <>
+              <div className="prompt-line">
+                <span className="user">[santosh</span>
+                <span className="at">@</span>
+                <span className="host">nixos</span>
+                <span className="path">~]</span>
+                <span className="dollar">$</span>
+                <span> </span>
+                <span className="command" id="command-text">
+                  {commandText}
+                </span>
+                {showCursor && <span className="cursor" id="cursor"></span>}
+              </div>
 
-          <div className={`output-hidden ${showOutput ? "" : "hidden"}`}>
-            <div className={`info-line ${showOutput ? "" : "hidden"}`}>
-              <span className="bio">{randomContent.bio}</span>
-            </div>
-          </div>
+              <div className={`output-hidden ${showOutput ? "" : "hidden"}`}>
+                <div className={`info-line ${showOutput ? "" : "hidden"}`}>
+                  <span className="bio">{randomContent.bio}</span>
+                </div>
+              </div>
+            </>
+          )}
 
           {history.map((entry, index) => (
             <div key={index}>
