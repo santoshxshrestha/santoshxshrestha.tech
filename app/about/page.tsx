@@ -12,7 +12,7 @@ export default function About() {
 
   const infoData = [
     { label: "Name:", value: "Santosh Shrestha" },
-    { label: "Role:", value: "wonderer" },
+    { label: "Role:", value: "Wanderer" },
     { label: "Location:", value: "Butwal, Nepal" },
     {
       label: "Languages:",
@@ -25,11 +25,10 @@ export default function About() {
       label: "Interests:",
       value: "Open Source, System Design, little bit of web",
     },
-    { label: "GitHub:", value: "github.com/santoshxshrestha", highlight: true },
+    { label: "GitHub:", value: "https://github.com/santoshxshrestha", highlight: true, url: "https://github.com/santoshxshrestha" },
     { label: "Website:", value: "well", highlight: true },
     { label: "Email:", value: "username [at] gmail.com", highlight: true },
     { label: "Discord:", value: "santoshxshrestha", highlight: true },
-    { label: "Reddit:", value: "santoshxshrestha", highlight: true },
   ];
 
   useEffect(() => {
@@ -109,9 +108,21 @@ export default function About() {
               className={`info-line ${visibleLines.includes(index) ? "" : "hidden"}`}
             >
               <span className="label">{info.label}</span>{" "}
-              <span className={`value ${info.highlight ? "highlight" : ""}`}>
-                {info.value}
-              </span>
+              {info.url ? (
+                <a 
+                  href={info.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={`value ${info.highlight ? "highlight" : ""}`}
+                  style={{ textDecoration: 'underline', cursor: 'pointer' }}
+                >
+                  {info.value}
+                </a>
+              ) : (
+                <span className={`value ${info.highlight ? "highlight" : ""}`}>
+                  {info.value}
+                </span>
+              )}
             </div>
           ))}
         </div>
