@@ -135,13 +135,15 @@ export default function Home() {
           <a href="https://nixwebr.ing">Nix Webring</a>
         </li>
         <li>
-          <Image
-            id="nix"
-            src="/nix.svg"
-            alt="Nix logo"
-            width={15}
-            height={15}
-          />
+          <div id="nix-wrapper">
+            <Image
+              id="nix"
+              src="/nix.svg"
+              alt="Nix logo"
+              width={15}
+              height={15}
+            />
+          </div>
         </li>
         <li>
           <a href="https://nixwebr.ing/rand">Random</a>
