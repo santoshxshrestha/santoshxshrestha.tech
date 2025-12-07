@@ -6,9 +6,12 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Santosh - Home",
   description:
-    "Santosh Shrestha's personal website. Explore projects, blog posts, and more about Santosh.",
+    "Santosh Shrestha's personal website. Explore more about Santosh.",
   keywords:
     "Santosh Shrestha, santoshxshrestha, personal website, projects, blog, NixOS, developer, portfolio",
+    openGraph: {
+        images: '/santosh.jpg'
+    }
 };
 
 export default function RootLayout({
