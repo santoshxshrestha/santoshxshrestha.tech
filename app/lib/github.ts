@@ -19,6 +19,32 @@ export interface GitHubRepo {
 export async function fetchGitHubRepos(
   username: string,
 ): Promise<GitHubRepo[]> {
+  const reposToinclude = [
+    "initflake",
+    "santoshxshrestha.github.io",
+    "nixos",
+    "wallpaper-archive",
+    "rustylens",
+    "crane-rs",
+    "rusre",
+    "gh-unfollowers",
+    "rmxt",
+    "NightDiamond-cursors",
+    "mdwatch",
+    "HistMerge",
+    "tmux-session-manager",
+    "mdecho",
+    "audix",
+    "homerc",
+    "voxlan",
+    "voxlan",
+    "flox",
+    "nexish",
+    "facebook-clone",
+    "unix_perms",
+    "portfolio",
+  ];
+
   try {
     const response = await fetch(
       `https://api.github.com/users/${username}/repos?sort=updated&per_page=100`,
@@ -38,7 +64,10 @@ export async function fetchGitHubRepos(
 
     // Filter out forks and archived repos, sort by stars and update date
     return repos
-      .filter((repo) => !repo.fork && !repo.archived)
+      .filter(
+        (repo) =>
+          !repo.fork && !repo.archived && reposToinclude.includes(repo.name),
+      )
       .sort((a, b) => {
         // Prioritize repos with more stars
         const starDiff = b.stargazers_count - a.stargazers_count;
