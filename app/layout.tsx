@@ -4,15 +4,15 @@ import Oneko from "./components/Oneko";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://santoshxshrestha.tech'),
+  metadataBase: new URL("https://santoshxshrestha.tech"),
   title: "Santosh - Home",
   description:
     "Santosh Shrestha's personal website. Explore more about Santosh.",
   keywords:
     "Santosh Shrestha, santoshxshrestha, personal website, projects, blog, NixOS, developer, portfolio",
-    openGraph: {
-        images: '/santosh.jpg'
-    }
+  openGraph: {
+    images: "/santosh.jpg",
+  },
 };
 
 export default function RootLayout({
