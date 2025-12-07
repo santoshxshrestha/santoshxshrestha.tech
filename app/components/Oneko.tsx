@@ -5,9 +5,9 @@ import { useEffect } from "react";
 export default function Oneko() {
   useEffect(() => {
     const script = document.createElement("script");
-    script.src = "/oneko.js";
+    script.src = "/oneko/oneko.js";
     script.async = true;
-    script.dataset.cat = "/oneko.gif";
+    script.dataset.cat = "/oneko/oneko.gif";
     document.body.appendChild(script);
 
     return () => {
