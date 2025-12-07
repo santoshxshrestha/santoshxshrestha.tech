@@ -1,4 +1,9 @@
-import { Inter, JetBrains_Mono, Playfair_Display, Dancing_Script } from "next/font/google";
+import {
+  Inter,
+  JetBrains_Mono,
+  Playfair_Display,
+  Dancing_Script,
+} from "next/font/google";
 
 export const inter = Inter({
   variable: "--font-inter",

@@ -36,13 +36,22 @@ export default function About() {
       value: "Open Source, System Design, little bit of web",
     },
     { label: "", value: "" },
-    { label: "GitHub:", value: "https://github.com/santoshxshrestha", highlight: true, url: "https://github.com/santoshxshrestha" },
+    {
+      label: "GitHub:",
+      value: "https://github.com/santoshxshrestha",
+      highlight: true,
+      url: "https://github.com/santoshxshrestha",
+    },
     { label: "Website:", value: "well", highlight: true },
     { label: "Email:", value: "username [at] gmail.com", highlight: true },
     { label: "Discord:", value: "santoshxshrestha", highlight: true },
     { label: "", value: "" },
     { label: "About:", value: "" },
-    { label: "", value: "I'm a systems programmer driven by curiosity for how things work under the hood. I enjoy building CLI tools in Rust, scripting in Bash, and shaping efficient workflows through a fully customized Linux environment. Currently pursuing BSc in CSIT, I spend much of my time learning through hands-on experimentation—configuring Linux with Hyprland, maintaining a minimal yet powerful setup with Neovim, Zsh, and tmux. When I'm not programming, you'll find me obsessively ricing my setup, tweaking configurations, and tinkering with my system to squeeze out every millisecond of performance." },
+    {
+      label: "",
+      value:
+        "I'm a systems programmer driven by curiosity for how things work under the hood. I enjoy building CLI tools in Rust, scripting in Bash, and shaping efficient workflows through a fully customized Linux environment. Currently pursuing BSc in CSIT, I spend much of my time learning through hands-on experimentation—configuring Linux with Hyprland, maintaining a minimal yet powerful setup with Neovim, Zsh, and tmux. When I'm not programming, you'll find me obsessively ricing my setup, tweaking configurations, and tinkering with my system to squeeze out every millisecond of performance.",
+    },
   ];
 
   useEffect(() => {
@@ -93,9 +102,9 @@ export default function About() {
 
   const executeCommand = (cmd: string): string => {
     const command = cmd.trim().toLowerCase();
-    
+
     if (command === "") return "";
-    
+
     if (command === "help") {
       return `Available commands:
   help     - Show this help message
@@ -112,23 +121,25 @@ export default function About() {
   fortune  - Get a random fortune
   ls       - List available pages`;
     }
-    
+
     if (command === "mefetch") {
-      return infoData.map(info => {
-        if (info.label === "" && info.value === "") return "";
-        if (info.label === "" && info.value !== "") return `  ${info.value}`;
-        return `${info.label} ${info.value}`;
-      }).join('\n');
+      return infoData
+        .map((info) => {
+          if (info.label === "" && info.value === "") return "";
+          if (info.label === "" && info.value !== "") return `  ${info.value}`;
+          return `${info.label} ${info.value}`;
+        })
+        .join("\n");
     }
-    
+
     if (command === "home") {
       return "Use the X button to navigate home, or visit /";
     }
-    
+
     if (command === "projects") {
       return "Use the navigation to visit the projects page.";
     }
-    
+
     if (command === "skills") {
       return `Technical Skills:
   • Languages: JavaScript, Rust, C, C++, Bash, Lua, Python
@@ -137,7 +148,7 @@ export default function About() {
   • DevOps: CI/CD, Docker, AWS, Linux, Git, Nix
   • Focus: Open Source, System Design, Web Development`;
     }
-    
+
     if (command === "contact") {
       return `Contact Information:
   • GitHub: https://github.com/santoshxshrestha
@@ -145,28 +156,28 @@ export default function About() {
   • Email: username [at] gmail.com
   • Location: Butwal, Nepal`;
     }
-    
+
     if (command === "whoami") {
       return "santosh";
     }
-    
+
     if (command === "date") {
       return new Date().toString();
     }
-    
+
     if (command.startsWith("echo ")) {
       return command.substring(5);
     }
-    
+
     if (command === "clear") {
       setHistory([]);
       return "";
     }
-    
+
     if (command === "ls") {
       return `../  projects/  README.md`;
     }
-    
+
     if (command === "neofetch") {
       return `
        ___      santosh@nixos
@@ -178,7 +189,7 @@ export default function About() {
                 Theme: Custom
                 Location: Butwal, Nepal`;
     }
-    
+
     if (command === "fortune") {
       const fortunes = [
         "The best way to predict the future is to invent it.",
@@ -192,14 +203,14 @@ export default function About() {
       ];
       return fortunes[Math.floor(Math.random() * fortunes.length)];
     }
-    
+
     return `bash: command not found: ${cmd}\nType 'help' for available commands.`;
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       const command = currentInput.trim().toLowerCase();
-      
+
       // Handle clear command specially - clear all terminal content
       if (command === "clear") {
         setHistory([]);
@@ -207,11 +218,11 @@ export default function About() {
         setCurrentInput("");
         return;
       }
-      
+
       const output = executeCommand(currentInput);
       setHistory([...history, { command: currentInput, output }]);
       setCurrentInput("");
-      
+
       // Scroll to bottom after rendering
       setTimeout(() => {
         if (terminalRef.current) {
@@ -237,7 +248,11 @@ export default function About() {
       <h1 className="name">About</h1>
       <div className="header"></div>
 
-      <div className="terminal-content" ref={terminalRef} onClick={handleTerminalClick}>
+      <div
+        className="terminal-content"
+        ref={terminalRef}
+        onClick={handleTerminalClick}
+      >
         {showInitialContent && (
           <>
             <div className="prompt-line">
@@ -258,14 +273,18 @@ export default function About() {
                 <div
                   key={index}
                   className={`info-line ${visibleLines.includes(index) ? "" : "hidden"}`}
-                  style={info.label === "" && info.value !== "" ? { 
-                    textAlign: 'left', 
-                    display: 'block',
-                    whiteSpace: 'normal',
-                    wordWrap: 'break-word',
-                    overflowWrap: 'break-word',
-                    textIndent: '2rem'
-                  } : {}}
+                  style={
+                    info.label === "" && info.value !== ""
+                      ? {
+                          textAlign: "left",
+                          display: "block",
+                          whiteSpace: "normal",
+                          wordWrap: "break-word",
+                          overflowWrap: "break-word",
+                          textIndent: "2rem",
+                        }
+                      : {}
+                  }
                 >
                   {info.label === "" && info.value !== "" ? (
                     <span className="value">{info.value}</span>
@@ -273,17 +292,22 @@ export default function About() {
                     <>
                       <span className="label">{info.label}</span>{" "}
                       {info.url ? (
-                        <a 
-                          href={info.url} 
-                          target="_blank" 
+                        <a
+                          href={info.url}
+                          target="_blank"
                           rel="noopener noreferrer"
                           className={`value ${info.highlight ? "highlight" : ""}`}
-                          style={{ textDecoration: 'underline', cursor: 'pointer' }}
+                          style={{
+                            textDecoration: "underline",
+                            cursor: "pointer",
+                          }}
                         >
                           {info.value}
                         </a>
                       ) : (
-                        <span className={`value ${info.highlight ? "highlight" : ""}`}>
+                        <span
+                          className={`value ${info.highlight ? "highlight" : ""}`}
+                        >
                           {info.value}
                         </span>
                       )}

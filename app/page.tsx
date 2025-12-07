@@ -65,9 +65,9 @@ export default function Home() {
 
   const executeCommand = (cmd: string): string => {
     const command = cmd.trim().toLowerCase();
-    
+
     if (command === "") return "";
-    
+
     if (command === "help") {
       return `Available commands:
   help     - Show this help message
@@ -83,50 +83,50 @@ export default function Home() {
   fortune  - Get a random fortune
   ls       - List available pages`;
     }
-    
+
     if (command === "about") {
       return "A jack of all trades and master of none, is often better than a master of one.\nI'm a developer passionate about Nix, terminal workflows, and clean code.";
     }
-    
+
     if (command === "projects") {
       return "Check out my projects page! Type 'ls' to see available pages.";
     }
-    
+
     if (command === "skills") {
       return `Technical Skills:
   • Languages: Rust, TypeScript, Python, C++, Bash
   • Tools: Neovim, Git, Nix, Hyprland
   • Focus: Systems programming, Web development, DevOps`;
     }
-    
+
     if (command === "contact") {
       return `Contact Information:
   • GitHub: @santoshxshrestha
   • Location: ~/dev
   • Status: Always learning`;
     }
-    
+
     if (command === "whoami") {
       return "santosh";
     }
-    
+
     if (command === "date") {
       return new Date().toString();
     }
-    
+
     if (command.startsWith("echo ")) {
       return command.substring(5);
     }
-    
+
     if (command === "clear") {
       setHistory([]);
       return "";
     }
-    
+
     if (command === "ls") {
       return `projects/  about/  README.md`;
     }
-    
+
     if (command === "neofetch") {
       return `
        ___      santosh@nixos
@@ -137,7 +137,7 @@ export default function Home() {
                 Editor: Neovim
                 Theme: Custom`;
     }
-    
+
     if (command === "fortune") {
       const fortunes = [
         "The best way to predict the future is to invent it.",
@@ -149,14 +149,14 @@ export default function Home() {
       ];
       return fortunes[Math.floor(Math.random() * fortunes.length)];
     }
-    
+
     return `bash: command not found: ${cmd}\nType 'help' for available commands.`;
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       const command = currentInput.trim().toLowerCase();
-      
+
       // Handle clear command specially - clear all terminal content
       if (command === "clear") {
         setHistory([]);
@@ -164,11 +164,11 @@ export default function Home() {
         setCurrentInput("");
         return;
       }
-      
+
       const output = executeCommand(currentInput);
       setHistory([...history, { command: currentInput, output }]);
       setCurrentInput("");
-      
+
       // Scroll to bottom after rendering
       setTimeout(() => {
         if (terminalRef.current) {
@@ -195,7 +195,9 @@ export default function Home() {
             height={120}
           />
         </div>
-        <h1 className="name">Santosh Shrestha <br/> (@santoshxshrestha)</h1>
+        <h1 className="name">
+          Santosh Shrestha <br /> (@santoshxshrestha)
+        </h1>
       </div>
 
       <div className="term-container" onClick={handleTerminalClick}>
@@ -288,6 +290,12 @@ export default function Home() {
               alt="Nix logo"
               width={15}
               height={15}
+              onClick={() =>
+                window.open(
+                  "https://github.com/santoshxshrestha/nixos",
+                  "_blank",
+                )
+              }
             />
           </div>
         </li>
