@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { inter, jetbrainsMono, playfair, dancingScript } from "./fonts";
+import Oneko from "./components/Oneko";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -29,6 +30,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} ${playfair.variable} ${dancingScript.variable} antialiased`}
       >
+        <Oneko />
         {children}
       </body>
     </html>
